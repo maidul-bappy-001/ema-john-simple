@@ -3,13 +3,12 @@ import './Cart.css'
 
 const Cart = (props) => {
     const cart = props.cart;
-
-    const total = cart.reduce((total, prd) => total + prd.price, 0);
-    // let total = 0;
-    // for (let i = 0; i < cart.length; i++) {
-    //     const product = cart[i];
-    //     total = total + product.price
-    // }
+    // const total = cart.reduce((total, prd) => total + prd.price * prd.quantity, 0);
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        const product = cart[i];
+        total = total + product.price * product.quantity;
+    }
 
     // shipping function start
 
@@ -45,6 +44,9 @@ const Cart = (props) => {
         <p>Shipping Cost: {formatNumber(shipping)}</p>
         <p>Vat + Tax: {formatNumber(tax)}</p>
         <p>Total Price: {formatNumber(total + shipping + tax)}</p>
+        {
+            props.children
+        }
     </div>
     );
 };
